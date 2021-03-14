@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap');
+
+body, html {
+    font-family: 'Roboto', sans-serif !important; 
+    scroll-behavior: smooth;
+}
+:root {
+    --F4Gray : #606060;
+    --F4Green : #8ABC3E;
+    --F4GrayRed : #B5332E;
+}
+
+.text-green {
+    color: var(--F4Green);
+}
+.bg-green {
+    background-color: var(--F4Green);
+}
+.border-green,.divide-green {
+    border-color: var(--F4Green) !important;
+}
+.bg-lightgreen {
+    background:rgba(138, 188, 62,20%);
+}
+.text-gray {
+    color: var(--F4Gray );
+}
+.bg-gray {
+    background-color: var(--F4Gray );
+}
+.border-gray {
+    border-color: var(--F4Gray );
+}
+.border-b-13 {
+    border-bottom: 13px solid transparent;
+}
+
+#home-section {
+    height: 500px;
+    background: url('./assets/images/hero-image.png');
+    background-size: 100% 100%;
+}
+#map-section {
+    height: 500px;
+}
+@media screen and (max-width: 1024px) {
+    #home-section {
+        height: 350px;
+        background: url('./assets/images/hero-image.png');
+        background-size: 100% 100%;
+    }
+    .home-heading,.home-info  {
+        background: var(--F4Gray);
+        opacity: 75%;
+    }
+}
+@media screen and (max-width: 640px) {
+    #home-section {
+        height: 250px;
+        background: url('./assets/images/hero-image.png');
+        background-size: 100% 100%;
+    }
+}
+.slick-next:before, .slick-prev:before {
+    font-size: 30px !important;
+}
+.slider-2 .slick-next:before, .slider-2 .slick-prev:before {
+    font-size: 30px !important;
+    color: var(--F4Green);
+}
+.slick-prev {
+    left: -35px !important;
+}
+.slick-next {
+    right: -25px !important;
+}
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: var(--F4Green) !important;
+}
+@keyframes shrink {
+  from {width: 15rem;}
+  to {width: 2.5rem;}
+}
+@keyframes expand {
+    from {width:2.5rem;}
+    to {width:  15rem;}
+}
+.animation-out{
+    width: 100%;
+    animation: slide-out .7s ease-in-out forwards;
+}
+@keyframes slide-out {
+    from {width: 100%;}
+    to {width: 0;}
+  }
+  .sidebar-animation {
+      width: 0px;
+      animation: slide .5s ease-in-out forwards;
+  }
+  @keyframes slide {
+    from {width: 0;}
+    to {width: 100%;}
+  }
