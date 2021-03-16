@@ -18,8 +18,8 @@
 <body>
     <div class="overflow-hidden relative 2xl:mx-auto">
       <header class="max-w-screen-2xl mx-auto bg-white">
-        <div class="flex items-center justify-between py-2 lg:py-0">
-          <div class="flex flex-col justify-end items-end">
+        <div class="flex items-center justify-between pt-1.5 lg:pt-0">
+          <div class="flex flex-col lg:-ml-1 lg:mt-8 justify-end items-end">
             <img class="h-12 lg:h-24" src="assets/images/logo.png" alt="">
           </div>
           <svg id="openNavIcon" onclick="openSidebar()" class="lg:hidden flex-none h-8 w-8 text-green" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -75,7 +75,8 @@
         </div>
       </header>
       <!-- Home  Section -->
-      <div id="home-section" class="max-w-screen-2xl mx-auto">
+      <!-- Home  Section -->
+      <div id="home-section" class="max-w-screen-2xl px-5 lg:px-10 mx-auto">
         <div class="max-w-screen-2xl mx-auto h-full">
           <div class="flex flex-col lg:gap-y-10 lg:justify-between h-full ">
             <h1 class="home-heading w-60 lg:w-auto text-2xl lg:text-6xl tracking-tight uppercase text-white font-bold ml-2 lg:ml-0 mt-24 lg:mt-7 xl:mt-24">Groen rijden, <br>binnen handbereik</h1>
@@ -642,14 +643,15 @@
             {
             breakpoint: 1024,
             settings: {
-                slidesToShow: 3,
+                slidesToShow: 2,
                 slidesToScroll: 1,
                 infinite: true,
-                dots: true
+                dots: true,
+                arrows: false,
             }
             },
             {
-            breakpoint: 600,
+            breakpoint: 910,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 1,
@@ -658,7 +660,7 @@
             }
             },
             {
-            breakpoint: 480,
+            breakpoint: 600,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
@@ -681,11 +683,12 @@
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 infinite: true,
-                dots: true
+                dots: true,
+                arrows: false,
             }
             },
             {
-            breakpoint: 600,
+            breakpoint: 910,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 1,
@@ -694,7 +697,7 @@
             }
             },
             {
-            breakpoint: 480,
+            breakpoint: 600,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
