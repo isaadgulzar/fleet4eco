@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet 4 ECO</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <link rel="stylesheet" href="./stylesheet.css">
+    
+</head>
+<body>
+    <div class="overflow-hidden relative 2xl:mx-auto">
+      <header class="max-w-screen-2xl px-5 lg:px-10 mx-auto bg-white">
+        <div class="flex items-center justify-between pt-1.5 lg:pt-0">
+          <div class="flex flex-col lg:-ml-1 lg:mt-8 justify-end items-end">
+            <img class="h-12 lg:h-24" src="assets/images/logo.png" alt="">
+          </div>
+          <svg id="openNavIcon" onclick="openSidebar()" class="lg:hidden flex-none h-8 w-8 text-green" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <div class="hidden lg:block flex flex-col">
+            <div class="flex space-x-12">
+              <ul class="flex space-x-12 uppercase text-white bg-gray">
+                <li><a class="inline-block text-xs font-semibold px-5 py-3 text-center" href="#">Blog</a></li>
+                <li><a class="inline-block text-xs font-semibold px-5 py-3 text-center" href="#">Elektrisch rijden</a></li>
+                <li><a class="inline-block text-xs font-semibold px-5 py-3 text-center" href="#">Over ons</a></li>
+                <li><a class="inline-block text-xs font-semibold px-5 py-3 text-center" href="#">Contact</a></li>
+              </ul>
+              <ul class="flex uppercase text-white bg-white text-center">
+                <li><a class="inline-block text-xs font-semibold px-2.5 py-3 bg-green" href="#">NL</a></li>
+                <li><a class="inline-block text-xs font-semibold px-2.5 py-3 text-green" href="#">FR</a></li>
+              </ul>
+            </div>
+            <ul class="flex space-x-12 uppercase text-white bg-white">
+              <li><a class="inline-block uppercase text-gray font-bold pt-7 pb-2 border-b-13 border-green text-xl" href="#">Wagens</a></li>
+              <li><a class="inline-block uppercase text-gray font-bold pt-7 pb-2 text-xl" href="#">Laadoplossingen</a></li>
+              <li><a class="inline-block uppercase text-gray font-bold pt-7 pb-2 text-xl" href="#">Installatie</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mySidebar" class="hidden h-full pt-0.5">
+          <div id="actualSidebar" class="relative overflow-y-auto w-3/5 xl:w-full lg:mt-0 lg:mb-0 bg-white rounded-tr-2xl shadow-lg">
+              <!-- For Mobile Sidebar Cross Button  -->
+              <div class="mt-3 flex justify-end mr-4">
+                <button type="button"id="closeSidebarIcon" onclick="closeSidebar()" class="hidden flex-shrink-0 inline-flex focus:outline-none">
+                    <svg class="h-7 w-7 text-green hover:text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+              </div>
+              <div class="flex flex-col w-full px-4">
+                  <div class="flex w-full flex-col mt-3 divide-y-2">
+                      <a href="#" class="py-2 text-md">Blog</a>
+                      <a href="#" class="py-2 text-md">Elektrisch rijden</a>
+                      <a href="#" class="py-2 text-md">Over ons</a>
+                      <a href="#" class="py-2 text-md">Contact</a>
+                      <a href="#" class="py-2 text-md">Wagens</a>
+                      <a href="#" class="py-2 text-md">Laadoplossingen</a>
+                      <a href="#" class="py-2 text-md">Installatie</a>
+                  </div>
+                  <ul class="flex uppercase text-white bg-white mx-auto text-center">
+                    <li><a class="inline-block text-xs font-semibold px-2.5 py-3 bg-green" href="#">NL</a></li>
+                    <li><a class="inline-block text-xs font-semibold px-2.5 py-3 text-green" href="#">FR</a></li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+      </header>
+      <div class="max-w-screen-2xl mt-16 px-5 lg:px-10 mx-auto grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
+        <!-- Filter  -->
+        <div id="FilterSidebar" onclick="closeFilterSidebar()" class="hidden h-full lg:block col-span-1 mt-32">
+          <div id="actualSidebar" class="relative overflow-y-auto w-72 lg:w-72 bg-white pl-5 bg-lightgreen show border">
+            <div class="flex flex-col gap-y-4 pt-5 pb-20">
+              <!-- CAR MODEL  -->
+              <!-- For Mobile Sidebar Cross Button  -->
+              <div class="mt-3 flex justify-end mr-4">
+                <button type="button"id="closeFilterSidebarIcon" onclick="closeFilterSidebar()" class="hidden flex-shrink-0 inline-flex focus:outline-none">
+                    <svg class="h-7 w-7 text-green hover:text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+              </div>
+              <div class="flex flex-col w-52">
+                <span class="label text-lg font-bold text-green uppercase mb-2">Merk</span>
+                <div class="relative customSelect">
+                  <label>
+                      <select name="car_model" id="car_model">
+                          <option selected> Audi </option>
+                          <option>Toyota</option>
+                          <option>Ferarri</option>
+                          <option>Lambo</option>
+                      </select>
+                  </label>
+                </div>
+              </div>
+              <!-- Type  -->
+              <div class="flex flex-col w-52">
+                <span class="label text-lg font-bold text-green uppercase mb-2">type</span>
+                <div class="relative customSelect">
+                  <label>
+                      <select name="car_type" id="car_type">
+                          <option selected> E-Tron </option>
+                          <option>Type 1</option>
+                          <option>Type 2</option>
+                          <option>Type 3</option>
+                      </select>
+                  </label>
+                </div>
+              </div>
+              <!-- BEREIK  -->
+              <div class="flex flex-col">
+                <span class="label text-lg font-bold text-green uppercase mb-2">BEREIK</span>
+                <div class="">
+                  <div class="flex items-center mr-4 mb-3">
+                    <input id="radio1" type="radio" name="radio" class="hidden" checked />
+                    <label for="radio1" class="flex items-center cursor-pointer text-gray">
+                      <span class="w-5 h-5 inline-block bg-white mr-2 rounded-full border border-grey flex-no-shrink"></span>
+                      Dagelijks werkverkeer
+                    </label>
+                  </div>
+                  <div class="flex items-center mr-4 mb-3">
+                    <input id="radio2" type="radio" name="radio" class="hidden" />
+                    <label for="radio2" class="flex items-center cursor-pointer text-gray">
+                      <span class="w-5 h-5 inline-block bg-white mr-2 rounded-full border border-grey flex-no-shrink"></span>
+                      Gemiddeld (+250km)
+                    </label>
+                  </div>
+                  <div class="flex items-center mr-4 mb-3">
+                    <input id="radio3" type="radio" name="radio" class="hidden" />
+                    <label for="radio3" class="flex items-center cursor-pointer text-gray">
+                      <span class="w-5 h-5 inline-block bg-white mr-2 rounded-full border border-grey flex-no-shrink"></span>
+                      Verre afstanden (+400km)
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- Budget  -->
+              <div class="flex flex-col w-52">
+                <span class="label text-lg font-bold text-green uppercase mb-2">BUDGET</span>
+                  <div class="flex mt-3">
+                    <div x-data="range()" x-init="mintrigger(); maxtrigger()" class="relative max-w-xl w-full">
+                      <div>
+                        <input type="range" step="100" x-bind:min="min" x-bind:max="max" x-on:input="mintrigger" x-model="minprice" class="absolute pointer-events-none appearance-none z-20 h-2 w-full opacity-0 cursor-pointer">
+                  
+                        <input type="range" step="100" x-bind:min="min" x-bind:max="max" x-on:input="maxtrigger" x-model="maxprice" class="absolute pointer-events-none appearance-none z-20 h-2 w-full opacity-0 cursor-pointer">
+                  
+                        <div class="relative z-10 h-0.5">
+                  
+                          <div class="absolute z-10 left-0 right-0 bottom-0 top-0 rounded-md bg-white"></div>            
+                          <div class="absolute z-20 top-0 bottom-0 rounded-md bg-green" x-bind:style="'right:'+maxthumb+'%; left:'+minthumb+'%'"></div>          
+                          <div class="absolute z-30 w-4 h-4 top-0 left-0 bg-green rounded-full -mt-2" x-bind:style="'left: '+minthumb+'%'">
+                            <div class="absolute top-5 -left-5">
+                              <input type="text" maxlength="5" x-on:input.debounce="mintrigger" x-model="minprice"
+                                wire:model.debounce.300="minPrice"
+                                class="w-16 px-3 py-2 text-center text-green bg-lightgreen focus:outline-none">
+                            </div>
+                          </div>
+                          <div class="absolute z-30 w-4 h-4 top-0 right-0 bg-green rounded-full -mt-2" x-bind:style="'right: '+maxthumb+'%'">
+                            <div class="absolute top-5 -left-7">
+                                <input type="text" maxlength="5" x-on:input.debounce.300="maxtrigger" x-model="maxprice"
+                              wire:model.debounce="maxPrice"
+                              class="w-16 px-3 py-2 text-center text-green bg-lightgreen focus:outline-none">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <script>
+                      function range() {
+                        return {
+                          minprice: 520,
+                          maxprice: 9999,
+                          min: 0,
+                          max: 9999,
+                          minthumb: 0,
+                          maxthumb: 0,
+                          mintrigger() {
+                            this.validation();
+                            this.minprice = Math.min(this.minprice, this.maxprice - 500);
+                            this.minthumb = ((this.minprice - this.min) / (this.max - this.min)) * 100;
+                          },
+                          maxtrigger() {
+                            this.validation();
+                            this.maxprice = Math.max(this.maxprice, this.minprice + 200);
+                            this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);
+                          },
+                          validation() {
+                            if (/^\d*$/.test(this.minprice)) {
+                              if (this.minprice > this.max) {
+                                this.minprice = 9500;
+                              }
+                              if (this.minprice < this.min) {
+                                this.minprice = this.min;
+                              }
+                            } else {
+                              this.minprice = 0;
+                            }
+                            if (/^\d*$/.test(this.maxprice)) {
+                              if (this.maxprice > this.max) {
+                                this.maxprice = this.max;
+                              }
+                              if (this.maxprice < this.min) {
+                                this.maxprice = 200;
+                              }
+                            } else {
+                              this.maxprice = 9999;
+                            }
+                          }
+                        }
+                      }
+                    </script>
+                  </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <!-- Shop  -->
+        <div class="lg:col-span-2 xl:col-span-3">
+          <div class="flex flex-col md:flex-row justify-between items-center xl:pl-4 2xl:pl-7">
+            <h1 class="text-3xl xl:text-6xl tracking-tight uppercase text-green pb-2 xl:pb-4 border-b-13 border-green inline-block font-bold">KIES UW WAGEN</h1>
+            <div class="relative flex mt-2 md:mt-0">
+              <button type="button" class="w-24 md:w-48 py-3 flex justify-center items-center rounded-none bg-green border-2 border-green capitalize md:uppercase text-xs md:text-lg font-bold text-white focus:outline-none">
+                Bedrijf
+              </button>
+              <button type="button" class="w-24 md:w-48 py-3 flex justify-center items-center rounded-none bg-white border-2 border-green capitalize md:uppercase text-xs md:text-lg font-bold text-green hover:bg-gray-50 focus:outline-none">
+                Particuler
+              </button>
+            </div>
+          </div>
+          <div class="grid gap-y-5 sm:grid-cols-2 xl:grid-cols-3 xl:pl-4 2xl:pl-7 gap-x-5">
+            <div class="hidden sm:block sm:col-span-2 xl:col-span-3 overflow-y-visible overflow-x-hidden py-7">
+            <nav class="w-full" aria-label="Progress">
+              <ol class="flex w-full items-center">
+                <li class="relative pr-20 sm:pr-28 md:pr-40 lg:pr-10 xl:pr-40">
+                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="h-0.5 w-full bg-green"></div>
+                  </div>
+                </li>
+                <li class="relative pr-20 sm:pr-28 md:pr-40 lg:pr-32 xl:pr-40">
+                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="h-0.5 w-full bg-gray-300"></div>
+                  </div>
+                  <a href="#" class="relative w-5 h-5 flex items-center justify-center bg-green rounded-full">
+                    <span class="absolute top-5 -left-4 w-16 text-xs xl:text-sm text-green font-bold uppercase">wagen</span>
+                  </a>
+                </li>
+                <li class="relative pr-20 sm:pr-28 md:pr-40 lg:pr-32 xl:pr-40">
+                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="h-0.5 w-full bg-gray-300"></div>
+                  </div>
+                  <a href="#" class="relative w-5 h-5 flex items-center justify-center bg-gray-300 rounded-full">
+                    <span class="absolute top-5 -left-20 w-52 text-xs xl:text-sm text-gray-300 font-bold uppercase">ELEKTRISCHE INSTALLATIE</span>
+                  </a>
+                </li>
+                <li class="relative pr-20 sm:pr-28 md:pr-40 lg:pr-24 xl:pr-40">
+                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="h-0.5 w-full bg-gray-300"></div>
+                  </div>
+                  <a href="#" class="relative w-5 h-5 flex items-center justify-center bg-gray-300 rounded-full ">
+                    <span class="absolute top-5 -left-10 w-16 text-xs xl:text-sm text-gray-300 font-bold uppercase">LAADSTATION</span>
+                  </a>
+                </li>
+                <li class="relative pr-20 sm:pr-28 md:pr-40 lg:pr-24 xl:pr-40">
+                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="h-0.5 w-full bg-gray-300"></div>
+                  </div>
+                  <a href="#" class="relative w-5 h-5 flex items-center justify-center bg-gray-300 rounded-full ">
+                    <span class="absolute top-5 -left-6 w-16 text-xs xl:text-sm text-gray-300 font-bold uppercase">GEGEVENS</span>
+                  </a>
+                </li>
+                <li class="relative pr-20 sm:pr-28 md:pr-40 lg:pr-24 xl:pr-40">
+                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="h-0.5 w-full bg-gray-300"></div>
+                  </div>
+                  <a href="#" class="relative w-5 h-5 flex items-center justify-center bg-gray-300 rounded-full ">
+                    <span class="absolute top-5 -left-10 w-16 text-xs xl:text-sm text-gray-300 font-bold uppercase">SAMENVATTING</span>
+                  </a>
+                </li>
+              </ol>
+            </nav>
+            </div>
+            <button id="openFilterSidebarIcon" onclick="openFilterSidebar()" class="block lg:hidden sm:col-span-2 w-40 focus:outline-none mt-5 px-5 py-1.5 bg-green text-white rounded-full flex items-center">
+              <svg class="block h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+              </svg>
+              <span class="text-sm">Apply Filter</span>
+            </button>
+            <div class="col-span-1 mx-auto bg-white shadow-md border mt-5 sm:mt-0">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car1.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car2.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car1.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car2.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car1.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car2.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car1.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car2.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car1.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car2.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car1.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 mx-auto bg-white shadow-md border">
+              <div class="flex flex-col p-5">
+                <img src="assets/images/car2.jpg" alt="" class="mx-auto">
+                <h1 class="flex justify-between items-center mt-5">
+                  <span class="w-24 font-extrabold text-gray leading-4">
+                    Audi E-Tron
+                    Sportback
+                    55 Quatro
+                  </span>
+                  <span class="flex flex-col">
+                    <span class="text-4xl text-green font-extrabold">€875,00</span>
+                    <p class="flex justify-between text-xs">
+                      <span>Vanaf /mnd</span>
+                      <span class="text-green">excl. BTW</span>
+                    </p>
+                  </span>
+                </h1>
+                <p class="text-xs text-gray-500 w-28 mt-3">
+                  Op basis van 60 mnd en 15000 km/jaar
+                </p>
+                <div class="flex justify-between items-center mt-2">
+                  <button class="bg-green text-white font-bold py-1 px-3 uppercase">
+                    KIES DIT MODEL
+                  </button>
+                  <svg class="h-7 w-7 text-gray border-2 border-gray cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Footer  -->
+      <div class="relative bg-gray-200 pt-7 mt-20">
+        <div class="max-w-screen-2xl relative max-w-full mx-auto">
+            <div class="md:flex items-center justify-between">
+                <ul class="flex flex-col gap-y-2 text-center md:text-left">
+                    <li><a class="text-gray" href="#">WAGENS</a></li>
+                    <li><a class="text-gray" href="#">LAADOPLOSSINGEN</a></li>
+                    <li><a class="text-gray" href="#">INSTALLATIE</a></li>
+                    <li><a class="text-gray" href="#">BLOG</a></li>
+                    <li><a class="text-gray" href="#">ELEKTRISCH RIJDEN</a></li>
+                    <li><a class="text-gray" href="#">OVER ONS</a></li>
+                    <li><a class="text-gray" href="#">CONTACT</a></li>
+                </ul>
+                <div class="flex flex-col mx-auto md:mx-0 mt-5 md:mt-0 text-center md:text-left">
+                  <div class="mx-auto">
+                      <img class="h-24" src="./assets/images/logo.png" alt="">
+                  </div>
+                  <div class="flex mx-auto md:mx-0 mt-5 md:mt-0">
+                    <ul class="flex flex-col gap-y-1.5">
+                      <li>
+                        <a href="#" class="font-medium text-gray">
+                          Koolskampstraat 13 <br>
+                          8740 Pittem
+                        </a>
+                      </li>
+                      <li>
+                          <a href="#" class="font-medium text-gray">
+                            hello@fleet4eco.be 
+                          </a>
+                      </li>
+                      <li class="flex">
+                          <a href="tel:+320478958853" class="font-medium text-gray">
+                            +32 (0)478 95 88 53
+                          </a>
+                      </li>
+                      <li class="flex space-x-4 mt-3 mx-auto md:mx-0">
+                        <!-- For large screen social icons -->
+                        <a href="#" class="flex hover:text-gray-900 bg-gray text-white p-1 rounded-full">
+                          <span class="sr-only">Facebook</span>
+                          <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                          </svg>
+                        </a>
+                        <a href="#" class="flex hover:text-gray-900 bg-gray text-white p-1 rounded-full">
+                            <span class="sr-only">Instagram</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+            <div class="lg:inline-flex mt-3 lg:mt-0 bg-green">
+              <p class="text-2xl lg:text-4xl text-center lg:text-left tracking-tight py-6 px-7 text-white font-bold">KIES HIER UW LEASINGPAKKET</p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    function openSidebar() {
+        $('#mySidebar').removeClass("hidden");
+        $('#mySidebar').addClass("fixed inset-0 flex z-40");
+        $('#mySidebar').addClass("sidebar-animation animation-out");
+        $("<div class='sidebarOverlay fixed inset-0'><div class='absolute inset-0 bg-gray-600 opacity-75'></div></div>").insertBefore('#actualSidebar');
+        $('#closeSidebarIcon').removeClass("hidden");
+        $('#openSidebarIcon').addClass("hidden");
+    }
+    function closeSidebar() {
+        $('#mySidebar').removeClass("sidebar-animation");
+        $(".sidebarOverlay").remove();
+        $("#mySidebar").addClass('').delay(1000).queue(function() {
+            $(".sidebarOverlay").remove();
+            $('#mySidebar').addClass("hidden");
+            $('#mySidebar').removeClass("fixed inset-0 flex z-40");
+            $('#closeSidebarIcon').addClass("hidden");
+            $('#openSidebarIcon').removeClass("hidden");
+            $('#mySidebar').removeClass("animation-out");
+        });
+      } 
+
+    function openFilterSidebar() {
+        $('#FilterSidebar').removeClass("hidden");
+        $('#FilterSidebar').addClass("fixed inset-0 flex z-40");
+        $('#FilterSidebar').addClass("sidebar-animation animation-out");
+        $("<div class='sidebarOverlay fixed inset-0'><div class='absolute inset-0 bg-gray-600 opacity-75'></div></div>").insertBefore('#actualSidebar');
+        $('#closeFilterSidebarIcon').removeClass("hidden");
+    }
+    function closeFilterSidebar() {
+        $('#FilterSidebar').removeClass("sidebar-animation");
+        $(".sidebarOverlay").remove();
+        $('#closeFilterSidebarIcon').addClass("hidden");
+        $(".sidebarOverlay").remove();
+        $('#FilterSidebar').addClass("hidden");
+        $('#FilterSidebar').removeClass("fixed inset-0 flex z-40");
+        $('#FilterSidebar').removeClass("animation-out");
+      } 
+    </script>
+</body>
+</html>
